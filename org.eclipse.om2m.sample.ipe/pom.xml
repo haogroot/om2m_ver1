@@ -8,4 +8,6 @@
   	<artifactId>org.eclipse.om2m</artifactId>
   	<version>1.0.0-SNAPSHOT</version>
   </parent>
+  <name>org.eclipse.om2m :: sample ipe</name>
+  <description>org.eclipse.om2m :: sample ipe</description>
 </project>
