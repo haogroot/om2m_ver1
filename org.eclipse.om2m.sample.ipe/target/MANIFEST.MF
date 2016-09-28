@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: org.eclipse.om2m.sample.ipe
 Bundle-Name: Ipe
-Bundle-Version: 1.0.0.20160813-0657
+Bundle-Version: 1.0.0.20160922-1822
 Require-Bundle: org.eclipse.om2m.commons;bundle-version="1.0.0",org.ec
  lipse.om2m.interworking.service;bundle-version="1.0.0",org.eclipse.om
  2m.core.service;bundle-version="1.0.0",org.eclipse.osgi.util;bundle-v

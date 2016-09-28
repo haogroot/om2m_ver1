@@ -19,7 +19,7 @@ public class Monitor {
 	static String REQUEST_ENTITY = Constants.ADMIN_REQUESTING_ENTITY;
 	static String ipeId = "sample";
 	static String actuatorId = "MY_ACTUATOR";
-	static String sensorId = "MY_SENSOR";
+	static String sensorId = "Heart_SENSOR";
 	static boolean actuatorValue = false;
 	static int sensorValue = 0;
 	static String DESCRIPTOR = "DESCRIPTOR";
@@ -54,6 +54,7 @@ public class Monitor {
 	}
  
 	public void createSensorResources(){
+		
 		String targetId, content;
  
 		targetId = "/" + CSE_ID + "/" + CSE_NAME;
@@ -66,13 +67,13 @@ public class Monitor {
 		if(response.getResponseStatusCode().equals(ResponseStatusCode.CREATED)){
 			targetId = "/" + CSE_ID + "/" + CSE_NAME + "/" + sensorId;
 			Container cnt = new Container();
-			cnt.setMaxNrOfInstances(BigInteger.valueOf(10));
+			cnt.setMaxNrOfInstances(BigInteger.valueOf(5));	// contentInstance max size=5
 			// Create the DESCRIPTOR container
 			RequestSender.createContainer(targetId, DESCRIPTOR, cnt);
  
 			// Create the DATA container
 			RequestSender.createContainer(targetId, DATA, cnt);
- 
+			
 			// Create the description contentInstance
 			content = ObixUtil.getSensorDescriptorRep(sensorId, ipeId);
 			targetId = "/" + CSE_ID + "/" + CSE_NAME + "/" + sensorId + "/" + DESCRIPTOR;
@@ -132,18 +133,21 @@ public class Monitor {
 		public void run() {
 			while(running){
 				// Simulate a random measurement of the sensor
-				sensorValue = 10 + (int) (Math.random() * 100);
- 
+				//System.out.println("2016 09 23 AM2........");
+				sensorValue = 60 + (int) (Math.random() * 40);
+				
 				// Create the data contentInstance
 				String content = ObixUtil.getSensorDataRep(sensorValue);
+				//content = content + "Test0905";
 				String targetId = "/" + CSE_ID + "/" + CSE_NAME + "/" + sensorId + "/" + DATA;
 				ContentInstance cin = new ContentInstance();
 				cin.setContent(content);
 				cin.setContentInfo(MimeMediaType.OBIX);
 				RequestSender.createContentInstance(targetId, cin);
- 
+				
+				// 	every 1 minute = 60000 to sent the data
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(6000);
 				} catch (InterruptedException e){
 					e.printStackTrace();
 				}

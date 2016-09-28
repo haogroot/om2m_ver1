@@ -101,7 +101,7 @@ public class Activator implements BundleActivator {
 						}
 						LOGGER.info("Registering CseService...");
 						context.registerService(CseService.class.getName(), new Router(), null);		
-						LOGGER.info("CSE Started");		
+						LOGGER.info("CSE Started 20160923");		
 					}
 				});
 				
